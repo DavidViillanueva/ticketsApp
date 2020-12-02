@@ -1,0 +1,41 @@
+.auth__loginBlock {
+	display: flex;
+	flex-direction: column;
+
+	& h2 {
+		margin-bottom: 15px;
+		text-align: center;
+	}
+}
+
+.auth__loginBlock input {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: $font-color;
+	border-bottom: 1px solid $primary;
+	font-size: large;
+
+	transition: border-bottom 0.4s ease-in-out;
+	&:focus {
+		outline: none;
+		border-bottom: 1px solid $font-color;
+	}
+}
+
+.auth__btn {
+	background-color: $secondary;
+	width: 100%;
+	height: 40px;
+	border-radius: 4px;
+	color: $font-color;
+
+	transition: background-color 0.3s ease-in-out;
+
+	&:hover {
+		background-color: darken($color: $secondary, $amount: 3);
+	}
+
+	&:focus {
+		outline: none;
+	}
+}

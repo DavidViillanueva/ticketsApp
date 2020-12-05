@@ -1,16 +1,21 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { startLoginWithEmailPassword } from '../../actions/auth';
 import useForm from '../../hooks/useForm';
 
 const LoginScreen = () => {
+	const dispatch = useDispatch();
+
 	const [formValues, handleInputChange] = useForm({
-		user: '',
-		password: '',
+		email: 'email@test.com.ar',
+		password: '123456',
 	});
 
-	const { user, password } = formValues;
+	const { email, password } = formValues;
 
 	const handleSubmit = e => {
 		e.preventDefault();
+		dispatch(startLoginWithEmailPassword(email, password));
 	};
 
 	return (
@@ -21,10 +26,10 @@ const LoginScreen = () => {
 				<input
 					type="text"
 					autoComplete="off"
-					name="user"
-					placeholder="User"
+					name="email"
+					placeholder="Email"
 					onChange={handleInputChange}
-					value={user}
+					value={email}
 				/>
 
 				<input

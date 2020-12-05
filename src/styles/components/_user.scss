@@ -1,0 +1,19 @@
+.user__optionDevice {
+	align-items: center;
+	border-radius: 7px;
+	background-color: $secondary;
+	color: $font-color;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	height: 140px;
+	justify-content: center;
+	margin: 10px;
+	width: 190px;
+
+	transition: background-color 0.3s ease-in-out;
+
+	&:hover {
+		background-color: darken($color: $secondary, $amount: 10);
+	}
+}

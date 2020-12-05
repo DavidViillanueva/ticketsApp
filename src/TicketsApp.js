@@ -1,13 +1,14 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 
-// import AdminScreen from './components/admin/AdminScreen'
-import LoginScreen from './components/auth/LoginScreen';
+import AppRouter from './routers/AppRouter';
+import { store } from './store/store';
 
 const TicketsApp = () => {
 	return (
-		<div>
-			<LoginScreen />
-		</div>
+		<Provider store={store}>
+			<AppRouter />
+		</Provider>
 	);
 };
 

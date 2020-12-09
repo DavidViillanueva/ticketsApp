@@ -1,0 +1,23 @@
+.list__listContainer {
+    margin-top: 30px;
+    text-align: center;
+    overflow-y: scroll; 
+    flex: 1 1 auto;
+}
+
+.list__Item {
+    display: flex;
+    flex-direction: row;
+    background-color: $secondary;
+    padding: 10px;
+    border-radius: 5px;
+
+    margin: 10px;
+
+    overflow: hidden;
+
+    & hr {
+        margin-left: 6px;
+        margin-right: 6px;
+    }
+}

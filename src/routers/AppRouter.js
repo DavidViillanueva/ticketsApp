@@ -13,32 +13,44 @@ import PublicRoute from './PublicRoute';
 import LoginScreen from '../components/auth/LoginScreen';
 import AdminScreen from '../components/admin/AdminScreen';
 import SelectDeviceScreen from '../components/tickets/SelectDeviceScreen';
+import UserRouter from './UserRouter';
+import LoadingScreen from '../components/common/LoadingScreen';
 
 const AppRouter = () => {
 	const dispatch = useDispatch();
 
 	const [isLogged, setIsLogged] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		firebase.auth().onAuthStateChanged(async user => {
 			if (user?.uid) {
 				dispatch(login(user.uid));
 				setIsLogged(true);
+				setLoading( false );
 			} else {
 				setIsLogged(false);
+				setLoading(false);
 			}
 		});
-	}, [dispatch]);
+	}, [dispatch,setLoading,setIsLogged]);
+
+	if( loading ){
+		return(
+			<LoadingScreen />
+		)
+	}
 
 	return (
 		<Router>
 			<Switch>
 				<PublicRoute path="/login" component={LoginScreen} isAutenticated={isLogged} />
 
-				<PublicRoute path="/select" component={SelectDeviceScreen} isAutenticated={isLogged} />
+				<PublicRoute path="/user" component={ UserRouter } isAutenticated={isLogged} />
+
 				<PrivateRoute path="/admin" component={AdminScreen} isAutenticated={isLogged} />
 
-				<Redirect to="/select" />
+				<Redirect to="/admin" />
 			</Switch>
 		</Router>
 	);

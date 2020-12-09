@@ -1,15 +1,19 @@
 import { firebase } from '../firebase/firebaseConfig';
 import { types } from '../types/types';
+import { finishLoading, startLoading } from './ui';
 
 export const startLoginWithEmailPassword = (email, password) => {
 	return dispatch => {
+	dispatch( startLoading() );
 		firebase
 			.auth()
 			.signInWithEmailAndPassword(email, password)
 			.then(({ user }) => {
 				dispatch(login(user.uid));
+				dispatch( finishLoading());
 			})
 			.catch(e => {
+				dispatch( finishLoading());
 				console.log(e);
 			});
 	};
@@ -32,5 +36,5 @@ export const login = uid => ({
 });
 
 export const logout = () => ({
-	type: types.logout,
+	type: types.logout
 });

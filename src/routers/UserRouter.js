@@ -8,9 +8,9 @@ const UserRouter = () => {
         <div>
         <Switch>
             
-            <Route path="/user/type" component={SelectDeviceScreen} />
+            <Route exact path="/user/type" component={SelectDeviceScreen} />
 
-            <Route path="/user/deviceInfo" component={ DeviceInfoScreen } />
+            <Route exact path="/user/deviceInfo/:type" component={ DeviceInfoScreen } />
 
             <Redirect to="/user/type" />
 

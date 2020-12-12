@@ -9,7 +9,7 @@
 	}
 }
 
-.forms__formColumn input {
+.forms__formColumn input, textarea{
 	margin-top: 10px;
 	margin-bottom: 10px;
 	color: $font-color;
@@ -22,6 +22,19 @@
 		border-bottom: 1px solid $font-color;
 	}
 }
+
+.forms__formColumn textarea {
+	background-color: $dark-grey;
+	border: none;
+	resize: none;
+	color: $font-color;
+	transition: border-bottom 0.4s ease-in-out;
+	&:focus {
+		outline: none;
+		border-bottom: 1px solid $font-color;
+	}
+}
+
 
 .forms__btn {
 	background-color: $secondary;

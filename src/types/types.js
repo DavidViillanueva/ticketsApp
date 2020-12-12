@@ -7,6 +7,8 @@ export const types = {
 	uiFinishLoading: '[UI] Finish Loading',
 	uiSetErrorMessage: '[UI] Set Error Message',
 	uiUnsetErrorMessage: '[UI] Unset Error Message',
+	uiSetActive: '[UI] Set Active',
+	uiUnsetActive: '[UI] Unset Active',
 	
 
 	//preloads

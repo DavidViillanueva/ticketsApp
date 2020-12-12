@@ -19,3 +19,12 @@ export const setErrorMessage = ( msg ) => ({
 export const unsetErrorMessage = () => ({
     type: types.uiUnsetErrorMessage
 })
+
+export const setActive = ( active ) => ({
+    type: types.uiSetActive,
+    payload: active
+});
+
+export const unsetActive = () => ({
+    type: types.uiUnsetActive
+});

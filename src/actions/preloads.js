@@ -1,24 +1,39 @@
 import { db } from "../firebase/firebaseConfig";
 import { types } from "../types/types";
+import Swal from 'sweetalert2';
 
-
-export const startNewPreload = ( name, lastname, model, pass, damage, wet, issue  ) => {
+export const startNewPreload = ( name, lastname, email, model, pass, damage, wet, issue,type  ) => {
     return async( dispatch ) => {
+        Swal.fire({
+            title: 'Uploading preload',
+            text: 'Please wait...',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading()
+            }
+        });
 
         const newPreload = {
             name,
             lastname,
+            email,
             model,
             pass,
             damage,
             wet,
             issue,
+            type,
 
             date: new Date().getTime()
         }
 
         const doc = await db.collection(`preloads/`).add( newPreload );
         
+        Swal.close();
+        
+        
+        Swal.fire('Saved',`Thank's ${name}!`,'success');
+
         dispatch( addNewPreload( doc.id, newPreload ))
 
     }

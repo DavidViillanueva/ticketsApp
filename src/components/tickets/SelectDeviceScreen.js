@@ -1,21 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const SelectDeviceScreen = () => {
-	const handleSetDevice = e => {
-		console.log(e.target);
-	};
+const SelectDeviceScreen = ({ history }) => {
 
 	return (
-		<div className="containerCenter">
-			<div className="user__optionDevice" onClick={handleSetDevice} name="iphone">
-				<i className="fas fa-mobile-alt fa-4x"></i>
-				Iphone
-			</div>
+		<div className="containerCenter user__container">
+			<Link to={`/user/deviceInfo/iphone`}>
+				<div className="user__optionDevice" name="iphone">
+						<i className="fas fa-mobile-alt fa-4x"></i>
+						Iphone
+				</div>
+			</Link>
 
-			<div className="user__optionDevice" onClick={handleSetDevice} name="macbook">
-				<i className="fas fa-laptop fa-4x"></i>
-				MacBook
-			</div>
+			<Link to={`/user/deviceInfo/macbook`}>
+				<div className="user__optionDevice" name="macbook">
+						<i className="fas fa-laptop fa-4x"></i>
+						MacBook
+				</div>
+			</Link>
 		</div>
 	);
 };

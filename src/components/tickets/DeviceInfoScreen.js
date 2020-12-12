@@ -1,29 +1,44 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { startNewPreload } from '../../actions/preloads';
 import useForm from '../../hooks/useForm';
 
-const DeviceInfoScreen = () => {
+const DeviceInfoScreen = ({ history }) => {
 
+	const location = useLocation();
 	const dispatch = useDispatch();
 
 	const [damage, setDamage] = useState(false);
 	const [wet, setWet] = useState(true);
 
+	let type = ''
+
+	if( location.pathname.includes('macbook')){
+		type = 'macbook';
+	}
+	if( location.pathname.includes('iphone')){
+		type = 'iphone';
+	}
+
+
 	const [ formValues , handleInputChange ] = useForm({
 		name:'david',
 		lastname:'villanueva',
+		email: 'david1997@live.com.ar',
 		model:'nokia1100',
 		pass:'123',
 		issue:'no se apaga nunca',
 	})
 
-	const { name ,lastname ,model ,pass ,issue } = formValues;
+	const { name ,lastname ,model ,pass ,issue, email } = formValues;
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async(e) => {
 		e.preventDefault();
 
-		dispatch( startNewPreload(name,lastname,model,pass,damage,wet,issue) );
+		await dispatch( startNewPreload(name,lastname,email,model,pass,damage,wet,issue,type) );
+
+		history.replace('/');
 	}
 
     return (
@@ -45,6 +60,14 @@ const DeviceInfoScreen = () => {
 					placeholder="Lastname"
 					onChange={handleInputChange}
 					value={ lastname }
+				/>
+				<input
+					type="text"
+					autoComplete="off"
+					name="email"
+					placeholder="Email"
+					onChange={handleInputChange}
+					value={ email }
 				/>
                 <input
 					type="text"
@@ -80,14 +103,21 @@ const DeviceInfoScreen = () => {
                         onChange={ () => setWet(!wet) }
                     />
                 </div>
-                <input
+                {/* <input
 					type="text"
 					autoComplete="off"
 					name="issue"
 					placeholder="Issue"
 					onChange={handleInputChange}
 					value={issue}
-				/>
+				/> */}
+				<textarea
+					autoComplete="off"
+					name="issue"
+					placeholder="Problem description"
+					onChange={ handleInputChange }
+					value={ issue }
+				/> 
 
 				<button
 					type="submit"

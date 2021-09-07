@@ -5,19 +5,26 @@ import { types } from "../types/types";
 //     active: null 
 // }
 
+const initialState = {
+    tickets: [],
+    active: null
+}
 
-export const ticketReducer = ( state, action ) => {
+
+export const ticketReducer = ( state = initialState , action ) => {
     switch ( action.type ) {
-        case types.ticketNewPreload: 
+        case types.ticketsNewTickets:
             return {
                 ...state,
-                id: action.payload.id,
-                name: action.payload.name,
-                lastname: action.payload.lastname,
-
+                tickets: [ action.payload, ...state.tickets ]
+            }
+        case types.ticketsSetTickets:
+            return {
+                ...state,
+                tickets: [ ...action.payload ]
             }
     
         default:
-            break;
+            return state;
     }
 }

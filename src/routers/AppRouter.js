@@ -15,6 +15,7 @@ import AdminScreen from '../components/admin/AdminScreen';
 import SelectDeviceScreen from '../components/tickets/SelectDeviceScreen';
 import UserRouter from './UserRouter';
 import LoadingScreen from '../components/common/LoadingScreen';
+import AdminRouter from './AdminRouter';
 
 const AppRouter = () => {
 	const dispatch = useDispatch();
@@ -48,7 +49,7 @@ const AppRouter = () => {
 
 				<PublicRoute path="/user" component={ UserRouter } isAutenticated={isLogged} />
 
-				<PrivateRoute path="/admin" component={AdminScreen} isAutenticated={isLogged} />
+				<PrivateRoute path="/admin" component={AdminRouter} isAutenticated={isLogged} />
 
 				<Redirect to="/admin" />
 			</Switch>

@@ -1,6 +1,7 @@
 import { db } from "../firebase/firebaseConfig";
 import { types } from "../types/types";
 import Swal from 'sweetalert2';
+import { unsetActive } from "./ui";
 
 export const startNewPreload = ( name, lastname, email, model, pass, damage, wet, issue,type  ) => {
     return async( dispatch ) => {
@@ -23,6 +24,7 @@ export const startNewPreload = ( name, lastname, email, model, pass, damage, wet
             wet,
             issue,
             type,
+            active:false,
 
             date: new Date().getTime()
         }
@@ -39,6 +41,33 @@ export const startNewPreload = ( name, lastname, email, model, pass, damage, wet
     }
 
 };
+
+export const startDeletePreload = ( pid ) => {
+    return async( dispatch ) => {
+        Swal.fire({
+            title: 'Deleting preload',
+            text: 'Please wait...',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading()
+            }
+        });
+
+        const doc = await db.doc(`preloads/${ pid }`).delete();
+
+        dispatch( deletePreload(pid) );
+        dispatch( unsetActive() );
+        Swal.close();
+    }
+}
+
+export const deletePreload = (pid) => ({
+    type: types.preloadDelete,
+    payload: {
+        pid
+    }
+})
+
 
 
 export const addNewPreload = ( pid, preload) => ({
@@ -69,4 +98,4 @@ export const startLoadPreloads = () => {
 export const setPreloads = ( preloads ) =>({
     type: types.preloadSetPreloads,
     payload: preloads
-})
+});

@@ -1,3 +1,42 @@
 .active__block{
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    padding: 40px 0px 0px 0px;
+
+    & h1 {
+        text-align: center;
+    }
+}
+
+.active__card{
+    margin: 10px;
+    background-color: $secondary;
+    padding: 10px;
+    border-radius: 4px;
+    text-transform: capitalize;
+
+
+    & p {
+        margin-left: 10px;
+    }
+    & h1 {
+        text-align: center;
+    }
+}
+
+.active__cardRow {
+    display: flex;
+    align-items: flex-end;
+}
+
+.active__btn {
+    background-color: $secondary;
+    height: 40px;
+    border-radius: 5px;
+    margin: 5px;
+    color: $font-color;
+    &:hover {
+		background-color: darken($color: $secondary, $amount: 3);
+	}
 }

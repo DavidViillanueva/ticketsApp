@@ -62,6 +62,18 @@
 	}
 }
 
+.admin__tabActive {
+	background-color: darken($color: $secondary, $amount: 17);
+	&:hover {
+		background-color: darken($color: $secondary, $amount: 17);
+	}
+	// margin: 16px 0;
+//   box-shadow: 0 0 5px rgba(0,0,0,.05), 2px 2px 5px rgba(0,0,0,.1);
+//   border-radius: 4px;
+//   padding: 16px;
+//   width: 160px;
+}
+
 .admin__tabBubble {
 	background-color: $warning-color;
 	top: 3px;

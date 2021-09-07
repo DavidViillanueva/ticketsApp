@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { startLoadPreloads } from '../../actions/preloads';
+import { startLoadTickets } from '../../actions/tickets';
 import LoadingScreen from '../common/LoadingScreen';
 import Active from './Active';
 import AdminTab from './AdminTab';
@@ -11,19 +12,37 @@ const AdminScreen = () => {
 
 	const dispatch = useDispatch();
 	const { preloads } = useSelector(state => state.preload)
+	const { tickets } = useSelector(state => state.tickets);
 	const { active } = useSelector(state => state.ui);
+
+	const [activeList, setActiveList] = useState('preloads');
 
 
 	const handleClick = (e, id) => {
-
+		if( id === 0)
+			setActiveList('preloads');
+		if( id === 1) 
+			setActiveList('tickets');
+		if( id === 2)
+			setActiveList('done')
 	}
-
+	
 	useEffect(() => {
-
+		
+		dispatch( startLoadTickets() );
 		dispatch( startLoadPreloads() );
 
 	}, [dispatch])
 
+
+	const handleList = (items) => {
+		if(!items)
+			return <h1>No Elements</h1>
+		if( items.length > 0)
+			return <List items={ items } />
+		if( items.length === 0)
+			return <LoadingScreen />
+	}
 	return (
 		<>
 			<div className="admin__screen">
@@ -40,27 +59,37 @@ const AdminScreen = () => {
 									cant={ preloads.length }
 									onClick={ handleClick } 
 									id={0}
+									active = {(activeList === 'preloads')?true:false}
 								/>
 								<AdminTab 
 									title="Ordenes de trabajo" 
-									cant={3}
+									cant={tickets.length}
 									onClick={ handleClick } 
 									id={1}
+									active = {(activeList === 'tickets')?true:false}
 								/>
 
 								<AdminTab 
 									title="Trabajos a entregar" 
 									onClick={ handleClick }
 									id={2}
+									active = {(activeList === 'done')?true:false}
 								/>
 							</div>
 			
-							{(preloads.length>0)?
-								<List items={ preloads } />
-								:
-								<LoadingScreen />
-
+							{(activeList === 'preloads') &&
+								handleList(preloads)
 							}
+							
+							
+							{(activeList === 'tickets') &&
+								handleList(tickets)
+							}
+							{(activeList === 'done') &&
+								handleList(undefined)
+							}
+
+
 						</div>
 				}
 

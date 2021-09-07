@@ -1,23 +1,21 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import { unsetActive } from '../../actions/ui';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import ActivePreloads from './ActivePreloads';
+import ActiveTicket from './ActiveTicket';
+
 
 const Active = () => {
 
-    const dispatch = useDispatch();
+    const { active } = useSelector(state => state.ui);
 
-    const handleBack = () => {
-        dispatch( unsetActive() );
-    }
 
     return (
         <div className="active__block">
-            <h1>Active</h1>
-            <button
-                onClick={ handleBack }
-            >
-                Go Back!
-            </button>
+            {(active.price)?
+                <ActiveTicket active={active} />
+            :
+                <ActivePreloads active={active} />
+            }
         </div>
     )
 }

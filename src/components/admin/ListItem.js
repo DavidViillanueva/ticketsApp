@@ -15,14 +15,12 @@ const ListItem = ({ item }) => {
             onClick={ handleClick }
         
         >
-            <h3>{item.model }</h3>
-            <hr/>
+               
+            <h3>{ item.model }</h3>
             <p>{ item.issue }</p>
-            { (item.key) &&
-                <>
-                    <hr />
-                    <p>{item.key}</p>
-                </>
+
+            {(item.counter)&&
+                <h3>{ item.counter }</h3>
             }
         </div>
     )

@@ -15,6 +15,13 @@ export const types = {
 	preloadActivePreload: '[PRELOAD] Active Preload',
 	preloadNewPreload: '[PRELOAD] New Preload',
 	preloadSetPreloads: '[PRELOAD] Set Preloads',
+	preloadDelete: '[PRELOAD] Delete preload',
+
+	//tickets
+	ticketsActiveTickets: '[TICKETS] Active Preload',
+	ticketsNewTickets: '[TICKETS] New Ticket',
+	ticketsSetTickets: '[TICKETS] Set tickets',
+	ticketsDelete: '[TICKETS] Delete ticket',
 
 
 };

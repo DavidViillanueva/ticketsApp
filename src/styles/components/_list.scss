@@ -12,14 +12,19 @@
     padding: 10px;
     border-radius: 5px;
 
-
+    justify-content: space-between;
     cursor: pointer;
     margin: 10px;
 
     overflow: hidden;
+
+    &:hover {
+		background-color: darken($color: $secondary, $amount: 3);
+	}
 
     & hr {
         margin-left: 6px;
         margin-right: 6px;
     }
 }
+

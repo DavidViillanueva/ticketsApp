@@ -1,10 +1,10 @@
 import React from 'react';
 
-const AdminTab = ({ cant = null, title, onClick, id }) => {
+const AdminTab = ({ cant = null, title, onClick, id ,active}) => {
 
 	return (
 		<button
-			className="admin__tab pointer"
+			className={(active)?"admin__tab admin__tabActive pointer":"admin__tab pointer"}
 			onClick={ (e) => onClick(e,id) }
 		>
 			{cant !== null && (

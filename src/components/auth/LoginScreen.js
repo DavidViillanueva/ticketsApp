@@ -26,7 +26,7 @@ const LoginScreen = () => {
 			dispatch(startLoginWithEmailPassword(email, password));
 		}
 	};
-
+	
 	const isFormValid = () => {
 		if( !validator.isEmail(email)) {
 			dispatch( setErrorMessage('Email invalid') );

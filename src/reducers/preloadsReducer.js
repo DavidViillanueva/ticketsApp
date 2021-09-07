@@ -22,6 +22,13 @@ export const preloadsReducer = ( state = initialState, action ) => {
                 preloads: [...action.payload]
             }
     
+
+        case types.preloadDelete:
+            return {
+                ...state,
+                preloads: state.preloads.filter( ( preload ) => preload.id!==action.payload.pid )
+            }
+    
         default:
             return state;
 

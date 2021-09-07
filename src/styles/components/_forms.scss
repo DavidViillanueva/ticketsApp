@@ -16,26 +16,24 @@
 	border-bottom: 1px solid $primary;
 	font-size: large;
 
-	transition: border-bottom 0.4s ease-in-out;
-	&:focus {
-		outline: none;
-		border-bottom: 1px solid $font-color;
-	}
+}
+.forms__formColumn2 {
+	display: flex;
+	flex-direction: column;
 }
 
-.forms__formColumn textarea {
-	background-color: $dark-grey;
-	border: none;
-	resize: none;
+.MuiFormControl-root {
+	margin-bottom: 10px !important;
 	color: $font-color;
-	transition: border-bottom 0.4s ease-in-out;
-	&:focus {
-		outline: none;
-		border-bottom: 1px solid $font-color;
-	}
 }
 
+.MuiFormLabel-root {
+	color: white !important;
+}
 
+.MuiInputBase-input {
+	color: $font-color !important
+}
 .forms__btn {
 	background-color: $secondary;
 	width: 100%;
@@ -61,6 +59,15 @@
 	& p {
 		color: $font-color;
 	}
+}
+
+.forms__select {
+	width: 100%;
+	height: 40px;
+	background: transparent;
+	border: none;
+	color: $font-color;
+	// font-size: large;
 }
 
 .forms__row input {
